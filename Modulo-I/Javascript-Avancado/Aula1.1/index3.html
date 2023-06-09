@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 1 - Manipuladores AddEventListener</title>
+</head>
+<body>
+    <button type="button">Click Aqui</button>
+    <a href="#">Click Aqui</a>
+</body>
+
+<script>
+    let btn = document.querySelector('button')
+    let lnk = document.querySelector('a')
+
+    btn.addEventListener('click', () => {
+        alert('Você clicou no botão 3')
+    })
+
+    lnk.addEventListener('click', alerta)
+
+    function alerta(e) {
+
+        let o_event = e ? e : window.event
+
+        let msg = "Posicao X é: " + e.screenX
+
+        alert(msg)
+    }
+
+</script>    
+
+</html>
