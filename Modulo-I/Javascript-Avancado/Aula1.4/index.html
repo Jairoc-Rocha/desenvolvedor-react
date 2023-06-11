@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 1.4 Eventos do teclado - keydown</title>
+</head>
+<body>
+    <h3>Exemplo do evento keydown</h3>
+    <br>
+    Texto: <input type="text" id="a" value="">
+</body>
+    <script>
+        let inp = document.getElementById("a")
+
+        inp.addEventListener("keydown", funcKeyDown)
+        inp.addEventListener("keyup", funcKeyUp)
+
+        function funcKeyDown(event) {
+            event.target.style.background = "blue"
+        }
+        
+        function funcKeyUp(event) {
+            event.target.style.background = "white"
+        }
+
+    </script>
+</html>

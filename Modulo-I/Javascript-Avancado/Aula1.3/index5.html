@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 1.3 - MouseEvent - Ordem de execução </title>
+
+</head>
+<body>
+    <h3>Ordem de execução dos eventos do mouse</h3>
+
+    <input type="button" id="inp" value="Clique aqui">
+    <textarea id="txta" cols="30" rows="10"></textarea>
+    <input type="button" onclick="txta.value = '' " value="Clear">
+    
+</body>
+
+    <script>
+       
+        let inp = document.getElementById("inp")
+
+
+        inp.addEventListener("mouseover", log)
+        inp.addEventListener("click", log)
+        inp.addEventListener("mousedown", log)
+        inp.addEventListener("dblclick", log)
+        inp.addEventListener("contextmenu", log)
+
+        function log(event) {
+            document.getElementById("txta").value += event.type + "[target: ]"
+        }
+
+        
+
+    </script>
+
+</html>
