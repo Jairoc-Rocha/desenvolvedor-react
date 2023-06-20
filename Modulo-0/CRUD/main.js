@@ -8,15 +8,16 @@ const bcancel = document.getElementById("bcancel")
 const bsubmit = document.getElementById("bsubmit")
   
 async function init() {
-     [employees, roles] = await Promise.all([
-        listEmployees(),
-        listRoles()
-    ])
+     try {
+        [employees, roles] = await Promise.all([listEmployees(), listRoles()])
         renderRoles()
         renderData()
         clearSelection()
         bcancel.addEventListener("click", clearSelection)
-    
+        formEl.addEventListener("submit", onSubmit)
+     } catch (error) {
+        showError("Error loading data", Error)
+     }
 }
 init()
 
@@ -29,9 +30,11 @@ function selectItem(employee, li) {
     formEl.role_id.value = employee.role_id
     bdelete.style.display = "inline"
     bcancel.style.display = "inline"
+    bsubmit.textContent = "Update"
 }
 
 function clearSelection() {
+    ClearError()
     selectedItem = undefined
     const li = document.querySelector(".selected")
     if (li) {
@@ -42,9 +45,37 @@ function clearSelection() {
     formEl.role_id.value = ""
     bdelete.style.display = "none"
     bcancel.style.display = "none"
+    bsubmit.textContent = "Create"
+}
+
+async function onSubmit(event) {
+    event.preventDefault()
+    const employeeData = {
+        name: formEl.name.value,
+        salary: formEl.salary.valueAsNumber,
+        role_id: +formEl.role_id.value
+    } 
+    if (!employeeData.name || !employeeData.salary || !employeeData.role_id ) {
+        showError("You must fill all form fields")
+    } else {
+        if (selectedItem) {
+            const updatedItem = await updateEmployees(selectedItem.id, employeeData)
+            const i = employees.indexOf(selectItem)
+            employees[i] = updatedItem
+            renderData()
+            selectItem(updatedItem, listEl.children[i])
+        } else {
+            const createdItem = await createEmployees(employeeData)
+            employees.push(createdItem)
+            renderData()
+            selectItem(createdItem, listEl.lastChild)
+            listEl.lastChild.scrollIntoView()
+        }
+    }       
 }
 
 function renderData() {
+    listEl.innerHTML = ""
     for (const employee of employees) {
         let role = roles.find((role) => role.id === employee.role_id)
         const li = document.createElement("li")
@@ -69,7 +100,15 @@ function renderData() {
     }   
   }
   
-  function showError(error) {
-    document.getElementById("erros").textContent= "Erro ao carregar dados.";
-    console.error(error);
+  function showError(message, error) {
+    document.getElementById("erros").textContent = message;
+    if (error) {
+        console.error(error);
+    }
+    
+  }
+
+  function ClearError() {
+    document.getElementById("erros").textContent = "";  
+    
   }
