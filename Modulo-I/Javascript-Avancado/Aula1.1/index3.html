@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1 - Manipuladores AddEventListener</title>
+    <title>Aula 1 Manipuladores AddEventListener</title>
 </head>
 <body>
-    <button type="button">Click Aqui</button>
-    <a href="#">Click Aqui</a>
+    <button type="button">Click aqui</button>
+    <a href="#">Click aqui</a>
 </body>
+</html>
 
 <script>
-    let btn = document.querySelector('button')
-    let lnk = document.querySelector('a')
 
-    btn.addEventListener('click', () => {
-        alert('Você clicou no botão 3')
-    })
+var btn = document.querySelector('button');
+var lnk = document.querySelector('a');
 
-    lnk.addEventListener('click', alerta)
+btn.addEventListener('click', alerta);
 
-    function alerta(e) {
+function alerta ( e ) {
 
-        let o_event = e ? e : window.event
+    let o_event = e ? e : window.event;
 
-        let msg = "Posicao X é: " + e.screenX
+    let msg = "Posicao X é: " + o_event.screenX;
 
-        alert(msg)
-    }
+    window.alert(msg);    
+}
 
-</script>    
 
-</html>
+</script>

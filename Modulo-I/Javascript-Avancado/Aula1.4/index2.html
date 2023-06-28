@@ -1,41 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1.4 Eventos do teclado - Combinação de teclas</title>
+    <title>Aula 1.4 Eventos do Teclado - Combinação de teclas</title>
 </head>
 <body>
-    <h3>Exemplo do Evento do teclado Combinação de teclas</h3>
-    <br>
-    <p>Pressione as teclas (b) e (y) juntos</p>
+    <p>Pressione d e a juntos</p>    
 </body>
-    <script>
-        
-        function duasTeclas(func, ...codes) {
+<script>
 
-            let pressed = new Set()
+    function runDoubleKeys(func, ...codes){
 
-            document.addEventListener("keydown", (event) => {
-                pressed.add(event.code)
+        let pressed = new Set();
 
-                for (let code of codes) {
-                    if (!pressed.has(code)) {
-                        return
-                    }
-                pressed.clear()
-                func()
+        document.addEventListener('keydown', (event) => {
+            pressed.add(event.code);
+
+            console.log(event.code);    
+            for(let code of codes)
+                if(!pressed.has(code)) {
+                    return;
                 }
-            })
+            pressed.clear();
+            func();
+        });
 
-            document.addEventListener("keyup", (event) => pressed.delete(event.code))
+        document.addEventListener('keyup', (event) => pressed.delete(event.code))
+    }
 
-        }
+    runDoubleKeys(() => alert("Combinacao de duas teclas"),
+        "KeyA",
+        "KeyD"
+    )
 
-        duasTeclas(() => alert("Combinação de duas teclas"),
-            "KeyB",
-            "KeyY"
-        )
-
-    </script>
+</script>
 </html>

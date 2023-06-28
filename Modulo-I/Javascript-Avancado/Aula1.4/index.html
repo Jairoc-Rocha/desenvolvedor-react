@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1.4 Eventos do teclado - keydown</title>
+    <title>Aula 1.4 Eventos do Teclado Keydown</title>
 </head>
 <body>
-    <h3>Exemplo do evento keydown</h3>
+    <p>Exemplo do evento de input</p>
     <br>
     Texto: <input type="text" id="a" value="">
 </body>
-    <script>
-        let inp = document.getElementById("a")
 
-        inp.addEventListener("keydown", funcKeyDown)
-        inp.addEventListener("keyup", funcKeyUp)
+<script>
+    let inp = document.getElementById('a');
 
-        function funcKeyDown(event) {
-            event.target.style.background = "blue"
-        }
-        
-        function funcKeyUp(event) {
-            event.target.style.background = "white"
-        }
+    inp.addEventListener('keydown', funcKeyDown, false);
+    inp.addEventListener('keyup', funcKeyUp, false);
 
-    </script>
+    function funcKeyDown( event ){
+        event.target.style.background = "blue";
+    }
+
+    function funcKeyUp( event ) {
+        event.target.style.background = "white"
+    }
+
+
+</script>
+
 </html>

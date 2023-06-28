@@ -1,56 +1,56 @@
 let Carro = {
-    propriedade: "Fernanda",
-    ano: 2026
-}
+    proprietario: "Fernanda",
+    ano: 2016
+};
 
 const handler = {
-    get (target, property) {
-        console.log(`GET ${property}`)
-        if (property in target) {
-            return target[property]
+    get(target, property, receiver) {
+        console.log(`GET ${property}`);
+        if(property in target) {
+            return target[property];
         }
-        return "Proprieda inexistente"
+        return "Propriedade inexistente"
     }
 }
 
-let carroProxy = new Proxy(Carro, handler)
+let carroProxy = new Proxy(Carro,handler);
 
-console.log(Carro.modelo)
-console.log(carroProxy.modelo)
+console.log(Carro.modelo);
+console.log(carroProxy.modelo);
 
 
-// Exemplo Proxy para tradutor
+//EXEMPLO PROXY PARA TRADUTOR
 let tradutor = {
-   "Carro": "Car",
-   "Ano": "Year" 
-}
+    'Carro': 'Car',
+    'Ano': 'Year'
+};
 
-let handleTradudor = {
-    get (target, property) {
-        if (property in target) {
-            return target[property]
+let handlerTradutor = {
+    get(target, property) {
+        if( property in target){
+            return target[property];
         } else {
-            return property
-        }    
+            return property;
+        }
     },
-    set (target, property, value) {
-        if (typeof value === "string") {
-            target[property] = value
-            return true
+    set(target, property, value) {
+        if( typeof value == 'string') {
+            target[property] = value;
+            return true;
         } else {
-            return false
+            return false;
         }
     }
-}
+};
+
+let tradutorProxy = new Proxy(tradutor,handlerTradutor);
 
 
-let tradutorProxy = new Proxy(tradutor, handleTradudor)
+console.log(tradutorProxy['Carro']);
+console.log(tradutorProxy['Modelo']);
 
-console.log(tradutorProxy["Carro"])
-console.log(tradutorProxy["Modelo"])
+tradutorProxy["Modelo"] = "Model";
+tradutorProxy["Marca"] = 123456;
 
-tradutorProxy["Modelo"] = "Model"
-tradutorProxy["Marca"] = 123456
-
-console.log(tradutorProxy["Modelo"])
-console.log(tradutorProxy["Marca"])
+console.log(tradutorProxy['Modelo']);
+console.log(tradutorProxy['Marca']);

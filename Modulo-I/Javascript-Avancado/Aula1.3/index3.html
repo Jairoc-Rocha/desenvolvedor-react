@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1.3 - MouseEvent - Exemplo </title>
+    <title>Document</title>
     <style>
         .selected {
-            background-color: #0f0;
+            background: #0f0;
         }
         li {
             cursor: pointer;
@@ -15,53 +12,42 @@
     </style>
 </head>
 <body>
-    <h3>Selecione os itens da lista</h3>
+    Selecione os itens da lista:
+    <br>
     <ul id="ul">
-        <li>Desenvolmento de JavaScript</li>
-        <li>Arquitetura de aplicações Web</li>
+        <li>Desenvolvimento de JavaScript</li>
+        <li>Arquitetura de aplicaçoes Web</li>
         <li>Banco de dados</li>
-        <li>Introdução ao desenvolmento Web</li>
-        <li>Desenvolmento backend</li>
+        <li>Introducao ao desenvolvimento Web</li>
+        <li>Desenvolvimento backend</li>
     </ul>
 </body>
-
-    <script>
-       
-       let ul = document.getElementById("ul")
-
-       ul.addEventListener("click", selectItem)
-
-       function selectItem(event) {
-
-        if (event.target.tagName != "LI") return
-
-        if (event.ctrlKey || event.metaKey) {
-
-            toggleSelect(event.target)
-        } else {
-            singleSelect(event.target)
-        }
-
-       }
-
-       function singleSelect(li) {
-
-        let selected = ul.querySelectorAll('.selected')
-
-        for (let elem of selected) {
-            elem.classList.remove('selected')
-        }
-
-        li.classList.add('selected')
-
-       }
-
-       function toggleSelect(li) {
-
-        li.classList.toggle('selected')
-
-       }
-
-    </script>
-
 </html>
+<script>
+    let ul = document.getElementById('ul');
+
+    ul.addEventListener('click', selectItem);
+
+    function selectItem(event) {
+        if(event.target.tagName != "LI") return;
+
+        if(event.ctrlKey || event.metaKey) {
+            toggleSelect(event.target);
+        } else {
+            singleSelect(event.target);
+        }
+    }
+
+    function singleSelect (li) {
+        let selected = ul.querySelectorAll('.selected');
+
+        for( let elem of selected) {
+            elem.classList.remove('selected');
+        }
+        li.classList.add('selected');
+    }
+
+    function toggleSelect (li) {
+        li.classList.toggle('selected');
+    }
+</script>

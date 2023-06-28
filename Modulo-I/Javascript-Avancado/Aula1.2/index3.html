@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1.2 - Interface UIEvent - Beforeunload, Unload</title>
+    <title>Aula 1.2 UIEvent - Beforeunload</title>
 </head>
 <body>
-
-    <a href="https://www.xpeducacao.com.br" >Página do IGTI</a>
-
-    <script>
-
-        window.addEventListener("beforeunload", () => {
-            console.log("Antes de sair da página")
-        }) 
-        
-        window.addEventListener("unload", () => {
-            console.log("Saiu da página")
-        })
-
-    </script>
-    
+    <a href="http://igti.com.br">Página do IGTI</a>
 </body>
+<script>
+    window.addEventListener('beforeunload', () => {
+        console.log("Antes de sair")
+    })
+
+    window.addEventListener('unload', () => {
+        console.log("Saiu da página");
+    })
+
+</script>
+
+
 </html>

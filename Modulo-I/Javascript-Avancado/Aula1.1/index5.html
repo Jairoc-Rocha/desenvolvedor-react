@@ -1,37 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1 - Propagação de Eventos - Target</title>
-    <style>
+    <style type="text/css">
         div, p, a {
             padding: 15px 30px;
             display: block;
             border: 2px solid #000;
-            background-color: #fff;
+            background: #fff;
         }
     </style>
+    <title>Aula 1 Propagacao de Eventos - Bubbling</title>
 </head>
 <body>
     <div>DIV
-        <p>P 
+        <p>P
             <a href="#">A</a>
         </p>
     </div>
 
     <script>
-        let elements = document.querySelectorAll('div, p, a')
-
+        let elements = document.querySelectorAll("div, p, a");
+        
         function showTagName() {
-            alert("Captura: " + this.tagName)
+            alert("Captura: "+ this.tagName);
         }
 
-        for (let elem of elements) {
-            elem.addEventListener('click', showTagName, true)
+        for(let elem of elements)
+        {
+            elem.addEventListener("click", showTagName, true);
         }
-
     </script>
+
 </body>
 </html>
